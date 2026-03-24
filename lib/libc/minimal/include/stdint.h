@@ -48,7 +48,7 @@ typedef unsigned int        uint32_t;
 typedef unsigned long long  uint64_t;
 
 typedef int                 intptr_t;
-typedef unsigned int        uintptr_t;
+typedef unsigned long       uintptr_t;
 
 #ifdef __cplusplus
 }

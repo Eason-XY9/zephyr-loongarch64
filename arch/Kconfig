@@ -30,6 +30,10 @@ config NIOS2
 config RISCV32
 	bool "RISCV32 architecture"
 
+config LOONGARCH64
+	bool "LoongArch64 architecture"
+	select ATOMIC_OPERATIONS_C
+
 config XTENSA
 	bool "Xtensa architecture"
 

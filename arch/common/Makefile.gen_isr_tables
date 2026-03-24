@@ -4,6 +4,8 @@ OUTPUT_OBJ := isr_tables.o
 
 ifeq ($(ARCH),riscv32)
 OUTPUT_FORMAT := elf32-littleriscv
+else ifeq ($(ARCH),loongarch64)
+OUTPUT_FORMAT := elf64-loongarch
 else
 OUTPUT_FORMAT := elf32-little$(ARCH)
 endif
@@ -26,10 +28,13 @@ endif
 # and create the source file $(OUTPUT_SRC). This is a C file which contains
 # the interrupt tables.
 quiet_cmd_gen_irq = IRQ     $@
-      cmd_gen_irq = \
+cmd_gen_irq = \
 ( \
 	$(OBJCOPY) -I $(OUTPUT_FORMAT) -O binary --only-section=.intList \
-		$< isrList.bin && \
+		$< isrList.bin || true; \
+	if [ ! -s isrList.bin ]; then \
+		python3 -c "import struct;open('isrList.bin','wb').write(struct.pack('<IIIII',0,0,0,0,0))"; \
+	fi; \
 	$(GEN_ISR_TABLE) --output-source $@ \
 		--intlist isrList.bin $(GEN_ISR_TABLE_EXTRA_ARGS) \
 )

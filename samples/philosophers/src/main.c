@@ -44,6 +44,7 @@
 #endif
 
 #include <misc/__assert.h>
+#include <misc/util.h>
 
 #define SEMAPHORES 1
 #define MUTEXES 2
@@ -81,7 +82,8 @@
 /* end - control behaviour of the demo */
 /***************************************/
 
-#define STACK_SIZE 768
+#undef STACK_SIZE
+#define PHIL_STACK_SIZE 768
 
 /*
  * There are multiple tasks doing printfs and they may conflict.
@@ -162,7 +164,7 @@ void philosopher(void *id, void *unused1, void *unused2)
 	fork_t fork1;
 	fork_t fork2;
 
-	int my_id = (int)id;
+	int my_id = (int)(uintptr_t)id;
 
 	/* Djkstra's solution: always pick up the lowest numbered fork first */
 	if (is_last_philosopher(my_id)) {
@@ -230,8 +232,9 @@ static void start_threads(void)
 	for (int i = 0; i < NUM_PHIL; i++) {
 		int prio = new_prio(i);
 
-		k_thread_create(&threads[i], &stacks[i][0], STACK_SIZE,
-				philosopher, (void *)i, NULL, NULL, prio, 0, 0);
+		k_thread_create(&threads[i], &stacks[i][0], PHIL_STACK_SIZE,
+			philosopher, (void *)(uintptr_t)i, NULL, NULL, prio, 0, 0);
+
 	}
 }
 

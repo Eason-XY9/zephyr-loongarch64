@@ -1,0 +1,6 @@
+if BOARD_QEMU_LOONGARCH64
+
+config BOARD
+	default "qemu_loongarch64"
+
+endif

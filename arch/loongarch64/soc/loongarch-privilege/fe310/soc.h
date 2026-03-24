@@ -1,0 +1,102 @@
+/*
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+/**
+ * @file SoC configuration macros for the SiFive Freedom E310 (LoongArch port)
+ */
+
+#ifndef __LOONGARCH_FE310_SOC_H_
+#define __LOONGARCH_FE310_SOC_H_
+
+#include <soc_common.h>
+
+/* Generic IRQ count (ESTAT.IS bits 0..12) */
+#define LOONGARCH_MAX_GENERIC_IRQ     12
+
+/* Platform Level Interrupt Controller (PLIC) interrupt sources */
+#define FE310_WDOGCMP_IRQ            (LOONGARCH_MAX_GENERIC_IRQ + 1)
+#define FE310_RTCCMP_IRQ             (LOONGARCH_MAX_GENERIC_IRQ + 2)
+#define FE310_UART_0_IRQ             (LOONGARCH_MAX_GENERIC_IRQ + 3)
+#define FE310_UART_1_IRQ             (LOONGARCH_MAX_GENERIC_IRQ + 4)
+#define FE310_QSPI_0_IRQ             (LOONGARCH_MAX_GENERIC_IRQ + 5)
+#define FE310_QSPI_1_IRQ             (LOONGARCH_MAX_GENERIC_IRQ + 6)
+#define FE310_QSPI_2_IRQ             (LOONGARCH_MAX_GENERIC_IRQ + 7)
+#define FE310_GPIO_0_IRQ             (LOONGARCH_MAX_GENERIC_IRQ + 8)
+#define FE310_GPIO_1_IRQ             (LOONGARCH_MAX_GENERIC_IRQ + 9)
+#define FE310_GPIO_2_IRQ             (LOONGARCH_MAX_GENERIC_IRQ + 10)
+#define FE310_GPIO_3_IRQ             (LOONGARCH_MAX_GENERIC_IRQ + 11)
+#define FE310_GPIO_4_IRQ             (LOONGARCH_MAX_GENERIC_IRQ + 12)
+#define FE310_GPIO_5_IRQ             (LOONGARCH_MAX_GENERIC_IRQ + 13)
+#define FE310_GPIO_6_IRQ             (LOONGARCH_MAX_GENERIC_IRQ + 14)
+#define FE310_GPIO_7_IRQ             (LOONGARCH_MAX_GENERIC_IRQ + 15)
+#define FE310_GPIO_8_IRQ             (LOONGARCH_MAX_GENERIC_IRQ + 16)
+#define FE310_GPIO_9_IRQ             (LOONGARCH_MAX_GENERIC_IRQ + 17)
+#define FE310_GPIO_10_IRQ            (LOONGARCH_MAX_GENERIC_IRQ + 18)
+#define FE310_GPIO_11_IRQ            (LOONGARCH_MAX_GENERIC_IRQ + 19)
+#define FE310_GPIO_12_IRQ            (LOONGARCH_MAX_GENERIC_IRQ + 20)
+#define FE310_GPIO_13_IRQ            (LOONGARCH_MAX_GENERIC_IRQ + 21)
+#define FE310_GPIO_14_IRQ            (LOONGARCH_MAX_GENERIC_IRQ + 22)
+#define FE310_GPIO_15_IRQ            (LOONGARCH_MAX_GENERIC_IRQ + 23)
+#define FE310_GPIO_16_IRQ            (LOONGARCH_MAX_GENERIC_IRQ + 24)
+#define FE310_GPIO_17_IRQ            (LOONGARCH_MAX_GENERIC_IRQ + 25)
+#define FE310_GPIO_18_IRQ            (LOONGARCH_MAX_GENERIC_IRQ + 26)
+#define FE310_GPIO_19_IRQ            (LOONGARCH_MAX_GENERIC_IRQ + 27)
+#define FE310_GPIO_20_IRQ            (LOONGARCH_MAX_GENERIC_IRQ + 28)
+#define FE310_GPIO_21_IRQ            (LOONGARCH_MAX_GENERIC_IRQ + 29)
+#define FE310_GPIO_22_IRQ            (LOONGARCH_MAX_GENERIC_IRQ + 30)
+#define FE310_GPIO_23_IRQ            (LOONGARCH_MAX_GENERIC_IRQ + 31)
+#define FE310_GPIO_24_IRQ            (LOONGARCH_MAX_GENERIC_IRQ + 32)
+#define FE310_GPIO_25_IRQ            (LOONGARCH_MAX_GENERIC_IRQ + 33)
+#define FE310_GPIO_26_IRQ            (LOONGARCH_MAX_GENERIC_IRQ + 34)
+#define FE310_GPIO_27_IRQ            (LOONGARCH_MAX_GENERIC_IRQ + 35)
+#define FE310_GPIO_28_IRQ            (LOONGARCH_MAX_GENERIC_IRQ + 36)
+#define FE310_GPIO_29_IRQ            (LOONGARCH_MAX_GENERIC_IRQ + 37)
+#define FE310_GPIO_30_IRQ            (LOONGARCH_MAX_GENERIC_IRQ + 38)
+#define FE310_GPIO_31_IRQ            (LOONGARCH_MAX_GENERIC_IRQ + 39)
+
+#define FE310_PWM_0_CMP_0_IRQ        (LOONGARCH_MAX_GENERIC_IRQ + 40)
+#define FE310_PWM_0_CMP_1_IRQ        (LOONGARCH_MAX_GENERIC_IRQ + 41)
+#define FE310_PWM_0_CMP_2_IRQ        (LOONGARCH_MAX_GENERIC_IRQ + 42)
+#define FE310_PWM_0_CMP_3_IRQ        (LOONGARCH_MAX_GENERIC_IRQ + 43)
+#define FE310_PWM_1_CMP_0_IRQ        (LOONGARCH_MAX_GENERIC_IRQ + 44)
+#define FE310_PWM_1_CMP_1_IRQ        (LOONGARCH_MAX_GENERIC_IRQ + 45)
+#define FE310_PWM_1_CMP_2_IRQ        (LOONGARCH_MAX_GENERIC_IRQ + 46)
+#define FE310_PWM_1_CMP_3_IRQ        (LOONGARCH_MAX_GENERIC_IRQ + 47)
+#define FE310_PWM_2_CMP_0_IRQ        (LOONGARCH_MAX_GENERIC_IRQ + 48)
+#define FE310_PWM_2_CMP_1_IRQ        (LOONGARCH_MAX_GENERIC_IRQ + 49)
+#define FE310_PWM_2_CMP_2_IRQ        (LOONGARCH_MAX_GENERIC_IRQ + 50)
+#define FE310_PWM_2_CMP_3_IRQ        (LOONGARCH_MAX_GENERIC_IRQ + 51)
+
+/* UART Configuration */
+#define FE310_UART_0_BASE_ADDR       0x10013000
+#define FE310_UART_1_BASE_ADDR       0x10023000
+
+/* GPIO Configuration */
+#define FE310_GPIO_0_BASE_ADDR       0x10012000
+
+/* PINMUX Configuration */
+#define FE310_PINMUX_0_BASE_ADDR     (FE310_GPIO_0_BASE_ADDR + 0x38)
+#define FE310_PINMUX_IOF0            0x00
+#define FE310_PINMUX_IOF1            0x01
+#define FE310_PINMUX_PINS            32
+
+/* Platform Level Interrupt Controller Configuration */
+#define FE310_PLIC_BASE_ADDR         0x0C000000
+#define FE310_PLIC_PRIO_BASE_ADDR    FE310_PLIC_BASE_ADDR
+#define FE310_PLIC_IRQ_EN_BASE_ADDR  (FE310_PLIC_BASE_ADDR + 0x2000)
+#define FE310_PLIC_REG_BASE_ADDR     (FE310_PLIC_BASE_ADDR + 0x200000)
+#define FE310_PLIC_MAX_PRIORITY      7
+
+/* Clock controller */
+#define PRCI_BASE_ADDR               0x10008000
+
+/* Timer configuration */
+#define LOONGARCH_MTIME_BASE         0x0200BFF8
+#define LOONGARCH_MTIMECMP_BASE      0x02004000
+
+/* lib-c hooks required RAM defined variables */
+#define LOONGARCH_RAM_BASE           CONFIG_LOONGARCH_RAM_BASE_ADDR
+#define LOONGARCH_RAM_SIZE           CONFIG_LOONGARCH_RAM_SIZE
+
+#endif /* __LOONGARCH_FE310_SOC_H_ */

@@ -52,13 +52,16 @@ K_STACK_DEFINE(pipe_async_msgs, CONFIG_NUM_PIPE_ASYNC_MSGS);
 /* Allocate an asynchronous message descriptor */
 static void _pipe_async_alloc(struct k_pipe_async **async)
 {
-	k_stack_pop(&pipe_async_msgs, (u32_t *)async, K_FOREVER);
+	u32_t idx;
+	k_stack_pop(&pipe_async_msgs, &idx, K_FOREVER);
+	*async = &async_msg[idx];
 }
 
 /* Free an asynchronous message descriptor */
 static void _pipe_async_free(struct k_pipe_async *async)
 {
-	k_stack_push(&pipe_async_msgs, (u32_t)async);
+	u32_t idx = (u32_t)(async - async_msg);
+	k_stack_push(&pipe_async_msgs, idx);
 }
 
 /* Finish an asynchronous operation */
@@ -105,7 +108,7 @@ static int init_pipes_module(struct device *dev)
 	for (int i = 0; i < CONFIG_NUM_PIPE_ASYNC_MSGS; i++) {
 		async_msg[i].thread.thread_state = _THREAD_DUMMY;
 		async_msg[i].thread.swap_data = &async_msg[i].desc;
-		k_stack_push(&pipe_async_msgs, (u32_t)&async_msg[i]);
+		k_stack_push(&pipe_async_msgs, (u32_t)i);
 	}
 #endif /* CONFIG_NUM_PIPE_ASYNC_MSGS > 0 */
 

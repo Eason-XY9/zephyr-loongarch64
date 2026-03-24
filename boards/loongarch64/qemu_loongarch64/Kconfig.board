@@ -1,0 +1,3 @@
+config BOARD_QEMU_LOONGARCH64
+    bool "QEMU LOONGARCH64 target"
+    depends on SOC_LOONGARCH64_QEMU

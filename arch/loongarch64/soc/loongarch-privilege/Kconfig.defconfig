@@ -1,0 +1,20 @@
+# Kconfig - LoongArch privilege-mode SoC family
+# SPDX-License-Identifier: Apache-2.0
+
+config SOC_FAMILY_LOONGARCH_PRIVILEGE
+	bool
+	default n
+
+config SOC_FAMILY
+	string
+	default "loongarch-privilege"
+	depends on SOC_FAMILY_LOONGARCH_PRIVILEGE
+
+config LOONGARCH_HAS_PLIC
+	bool "Does the SoC provide a Platform Level Interrupt Controller"
+	default n
+	depends on SOC_FAMILY_LOONGARCH_PRIVILEGE
+	help
+	  Does the SoC provide support for a Platform Level Interrupt Controller
+
+source "arch/loongarch64/soc/loongarch-privilege/*/Kconfig.defconfig.series"

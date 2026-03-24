@@ -21,6 +21,8 @@
 #include <arch/riscv32/arch.h>
 #elif defined(CONFIG_XTENSA)
 #include <arch/xtensa/arch.h>
+#elif defined(CONFIG_LOONGARCH64)
+#include <arch/loongarch64/arch.h>
 #else
 #error "Unknown Architecture"
 #endif

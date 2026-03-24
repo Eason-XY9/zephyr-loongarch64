@@ -42,7 +42,7 @@ static inline void _mbox_async_alloc(struct k_mbox_async **async)
 /* free an asynchronous message descriptor */
 static inline void _mbox_async_free(struct k_mbox_async *async)
 {
-	k_stack_push(&async_msg_free, (u32_t)async);
+	k_stack_push(&async_msg_free, (u32_t)(uintptr_t)async);
 }
 
 #endif /* CONFIG_NUM_MBOX_ASYNC_MSGS > 0 */
@@ -81,7 +81,7 @@ static int init_mbox_module(struct device *dev)
 
 	for (i = 0; i < CONFIG_NUM_MBOX_ASYNC_MSGS; i++) {
 		_init_thread_base(&async_msg[i].thread, 0, _THREAD_DUMMY, 0);
-		k_stack_push(&async_msg_free, (u32_t)&async_msg[i]);
+		k_stack_push(&async_msg_free, (u32_t)(uintptr_t)&async_msg[i]);
 	}
 #endif /* CONFIG_NUM_MBOX_ASYNC_MSGS > 0 */
 

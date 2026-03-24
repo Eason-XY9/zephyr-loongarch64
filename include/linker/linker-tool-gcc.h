@@ -34,6 +34,9 @@
 	OUTPUT_FORMAT("elf32-littleriscv")
 #elif defined(CONFIG_XTENSA)
 	/* Not needed */
+#elif defined(CONFIG_LOONGARCH64) || defined(__loongarch__) || defined(__loongarch64)
+	OUTPUT_ARCH(loongarch)
+	OUTPUT_FORMAT("elf64-loongarch")
 #else
 	#error Arch not supported.
 #endif

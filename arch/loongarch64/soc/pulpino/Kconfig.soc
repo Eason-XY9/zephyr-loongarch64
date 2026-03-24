@@ -1,0 +1,11 @@
+if RISCV32
+
+if RISCV32
+
+config SOC_RISCV32_PULPINO
+	bool "Pulpino SOC implementation"
+	select ATOMIC_OPERATIONS_C
+
+endif
+
+endif

@@ -69,7 +69,8 @@ void k_stack_push(struct k_stack *stack, u32_t data)
 		_ready_thread(first_pending_thread);
 
 		_set_thread_return_value_with_data(first_pending_thread,
-						   0, (void *)data);
+					   0, (void *)(uintptr_t)data);
+
 
 		if (!_is_in_isr() && _must_switch_threads()) {
 			(void)_Swap(key);
@@ -106,7 +107,7 @@ int k_stack_pop(struct k_stack *stack, u32_t *data, s32_t timeout)
 
 	result = _Swap(key);
 	if (result == 0) {
-		*data = (u32_t)_current->base.swap_data;
+		*data = (u32_t)(uintptr_t)_current->base.swap_data;
 	}
 	return result;
 }

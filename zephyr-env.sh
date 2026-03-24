@@ -26,7 +26,7 @@ else
 	NAME=$(basename -- "$0")
 fi
 
-if [ "X$NAME" "==" "Xzephyr-env.sh" ]; then
+if [ "X$NAME" = "Xzephyr-env.sh" ]; then
     echo "Source this file (do NOT execute it!) to set the Zephyr Kernel environment."
     exit
 fi
@@ -67,3 +67,18 @@ unset zephyr_answer_file
 zephyr_answer_file=~/.zephyrrc
 [ -f ${zephyr_answer_file} ] &&  . ${zephyr_answer_file};
 unset zephyr_answer_file
+
+# LoongArch64 toolchain setup (optional override before sourcing this file)
+: ${ZEPHYR_GCC_VARIANT:=loongarch64}
+export ZEPHYR_GCC_VARIANT
+
+if [ -n "${LOONGARCH64_TOOLCHAIN_PATH}" ]; then
+    # Add toolchain bin to PATH if not already present
+    case ":${PATH}:" in
+        *:"${LOONGARCH64_TOOLCHAIN_PATH}/bin":*) ;;
+        *) PATH="${LOONGARCH64_TOOLCHAIN_PATH}/bin:${PATH}" ;;
+    esac
+    export LOONGARCH64_TOOLCHAIN_PATH PATH
+else
+    echo "LOONGARCH64_TOOLCHAIN_PATH is not set; set it to your loongarch64 toolchain root" >&2
+fi

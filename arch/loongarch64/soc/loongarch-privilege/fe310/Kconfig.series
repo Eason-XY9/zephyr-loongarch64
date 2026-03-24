@@ -1,0 +1,9 @@
+# Kconfig - LoongArch FE310 SoC implementation
+# SPDX-License-Identifier: Apache-2.0
+
+config SOC_SERIES_LOONGARCH_FE310
+	bool "SiFive Freedom E310 SoC implementation (LoongArch port)"
+	depends on LOONGARCH64
+	select SOC_FAMILY_LOONGARCH_PRIVILEGE
+	help
+	  Enable support for SiFive Freedom E310 SoC (LoongArch port)

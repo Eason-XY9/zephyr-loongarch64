@@ -156,7 +156,15 @@ static fork_t forks[NUM_PHIL] = {
 #endif
 };
 
-static K_THREAD_STACK_ARRAY_DEFINE(stacks, NUM_PHIL, STACK_SIZE);
+#if defined(PHIL_STACK_SIZE)
+#define PHIL_STACK_SZ PHIL_STACK_SIZE
+#elif defined(STACK_SIZE)
+#define PHIL_STACK_SZ STACK_SIZE
+#else
+#define PHIL_STACK_SZ 768
+#endif
+
+static K_THREAD_STACK_ARRAY_DEFINE(stacks, NUM_PHIL, PHIL_STACK_SZ);
 static struct k_thread threads[NUM_PHIL];
 
 #endif /* phil_obj_abstract__h */

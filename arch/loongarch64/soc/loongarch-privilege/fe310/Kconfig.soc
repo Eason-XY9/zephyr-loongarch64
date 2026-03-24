@@ -1,0 +1,12 @@
+# Kconfig - LoongArch FE310 SoC configuration options
+# SPDX-License-Identifier: Apache-2.0
+
+choice
+prompt "SiFive Freedom E310 SoC implementation"
+depends on SOC_SERIES_LOONGARCH_FE310
+
+config SOC_LOONGARCH_FE310
+	bool "SiFive Freedom E310 SoC implementation"
+	select ATOMIC_OPERATIONS_C
+
+endchoice

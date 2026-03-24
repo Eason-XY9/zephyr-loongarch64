@@ -1,0 +1,9 @@
+# Kconfig - LoongArch64 QEMU SoC implementation
+# SPDX-License-Identifier: Apache-2.0
+
+config SOC_SERIES_LOONGARCH64_QEMU
+	bool "LoongArch64 QEMU SoC implementation"
+	depends on LOONGARCH64
+	select SOC_FAMILY_LOONGARCH_PRIVILEGE
+	help
+	  Enable support for LoongArch64 QEMU SoC implementation

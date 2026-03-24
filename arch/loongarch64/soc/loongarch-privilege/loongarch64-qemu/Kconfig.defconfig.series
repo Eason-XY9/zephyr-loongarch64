@@ -1,0 +1,39 @@
+if SOC_SERIES_LOONGARCH64_QEMU
+
+config SOC_SERIES
+	string
+	default "loongarch64-qemu"
+
+config SYS_CLOCK_HW_CYCLES_PER_SEC
+	int
+	default 10000000
+
+config LOONGARCH_SOC_INTERRUPT_INIT
+	bool
+	default y
+
+config INCLUDE_RESET_VECTOR
+	bool
+	default y
+
+config NUM_IRQS
+	int
+	default 32
+
+config LOONGARCH_ROM_BASE_ADDR
+	hex
+	default 0x00001000
+
+config LOONGARCH_ROM_SIZE
+	hex
+	default 0x100000
+
+config LOONGARCH_RAM_BASE_ADDR
+	hex
+	default 0x80000000
+
+config LOONGARCH_RAM_SIZE_MB
+	int
+	default 32
+
+endif # SOC_SERIES_LOONGARCH64_QEMU
