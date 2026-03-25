@@ -6,6 +6,7 @@
 
 #include <kernel.h>
 #include <arch/cpu.h>
+#include <soc.h>
 #include <uart.h>
 #include <sys_io.h>
 

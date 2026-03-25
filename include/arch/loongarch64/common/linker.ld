@@ -39,6 +39,7 @@ PROVIDE(__device_PRE_KERNEL_1_start = 0);
 PROVIDE(__device_PRE_KERNEL_2_start = 0);
 PROVIDE(__device_POST_KERNEL_start = 0);
 PROVIDE(__device_APPLICATION_start = 0);
+PROVIDE(__device_init_start = 0);
 PROVIDE(__device_init_end = 0);
 PROVIDE(_static_thread_data_list_start = 0);
 PROVIDE(_static_thread_data_list_end = 0);

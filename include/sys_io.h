@@ -18,8 +18,8 @@ extern "C" {
 #include <stddef.h>
 
 typedef u32_t io_port_t;
-typedef u32_t mm_reg_t;
-typedef u32_t mem_addr_t;
+typedef uintptr_t mm_reg_t;
+typedef uintptr_t mem_addr_t;
 
 /* Port I/O functions */
 

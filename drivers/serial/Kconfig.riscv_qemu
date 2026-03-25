@@ -7,7 +7,7 @@
 
 menuconfig UART_RISCV_QEMU
 	bool "riscv-qemu UART driver"
-	depends on SOC_RISCV32_QEMU
+	depends on SOC_RISCV32_QEMU || SOC_LOONGARCH64_QEMU
 	default n
 	select SERIAL_HAS_DRIVER
 	help

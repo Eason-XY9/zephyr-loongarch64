@@ -14,6 +14,7 @@
 
 /* UART configuration (placeholder for QEMU) */
 #define LOONGARCH_QEMU_UART_BASE      0x900000001fe001e0UL
+#define RISCV_QEMU_UART_BASE          LOONGARCH_QEMU_UART_BASE
 
 /* Timer configuration (placeholder, align to QEMU virt timer if different) */
 #define LOONGARCH_MTIME_BASE          0x40000000

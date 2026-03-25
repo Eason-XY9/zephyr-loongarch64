@@ -37,6 +37,27 @@ extern "C" {
  */
 #define UART_OPTION_AFCE 0x01
 
+/* UART base (physical MMIO) */
+#define UART_BASE 0x900000001fe001e0UL
+
+/* 16550 register offsets */
+#define UART_RHR   0   /* Receive Holding Register (read) */
+#define UART_THR   0   /* Transmit Holding Register (write) */
+#define UART_DLL   0   /* Divisor Latch Low (DLAB=1) */
+#define UART_DLH   1   /* Divisor Latch High (DLAB=1) */
+#define UART_IER   1
+#define UART_FCR   2
+#define UART_ISR   2
+#define UART_LCR   3
+#define UART_MCR   4
+#define UART_LSR   5
+
+#define UART_REG(r) (*(volatile uint8 *)(UART_BASE + (r)))
+
+
+#define write_reg(r,val,type) (*(type *)Reg((r))=(type)(val))
+#define read_reg(r,type) (*(type *)Reg((r)))
+
 /** Common line controls for UART.*/
 #define LINE_CTRL_BAUD_RATE	(1 << 0)
 #define LINE_CTRL_RTS		(1 << 1)
@@ -92,7 +113,7 @@ struct uart_device_config {
 	union {
 		u32_t port;
 		u8_t *base;
-		u32_t regs;
+		uintptr_t regs;
 	};
 
 	u32_t sys_clk_freq;

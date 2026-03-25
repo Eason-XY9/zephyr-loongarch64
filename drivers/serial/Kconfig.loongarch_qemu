@@ -1,0 +1,11 @@
+# Kconfig.loongarch_qemu - loongarch-qemu UART configuration option
+#
+# SPDX-License-Identifier: Apache-2.0
+
+menuconfig UART_LOONGARCH_QEMU
+	bool "loongarch-qemu UART driver"
+	depends on SOC_LOONGARCH64_QEMU
+	default y
+	select SERIAL_HAS_DRIVER
+	help
+	Enable the LoongArch QEMU MMIO UART driver (polling).
